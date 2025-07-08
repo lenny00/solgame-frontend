@@ -1,136 +1,56 @@
-# SOL GAME - NFT Minting Setup Guide
+# 🦑🎮 SOL GAME: On-Chain Squid Game on Solana
 
-## 🚀 Quick Setup for NFT Minting
+![SOL GAME](https://sol-game.fun/500500.png)
 
-### 1. Deploy Your Candy Machine V3
+**SOL GAME** is an **on-chain survival game on Solana** inspired by Squid Game, where **456 players compete for a $10,000 jackpot**.
 
-Before the minting functionality works, you need to deploy a Candy Machine V3 on Solana:
-
-#### Option A: Using Sugar CLI (Recommended)
-```bash
-# Install Sugar CLI
-npm install -g @metaplex-foundation/sugar
-
-# Create your candy machine configuration
-sugar create-config
-
-# Deploy your candy machine
-sugar deploy
-
-# Verify deployment
-sugar verify
-```
-
-#### Option B: Using Metaplex Studio (GUI)
-1. Visit [Metaplex Studio](https://studio.metaplex.com/)
-2. Connect your wallet
-3. Create a new Candy Machine V3
-4. Upload your NFT assets
-5. Configure mint settings (0.2 SOL price)
-6. Deploy and note the Candy Machine ID
-
-### 2. Update Configuration
-
-After deploying your Candy Machine, update the configuration:
-
-**File: `src/config/candyMachine.ts`**
-```typescript
-export const CANDY_MACHINE_CONFIG = {
-  // Replace with your actual Candy Machine ID
-  CANDY_MACHINE_ID: new PublicKey('YOUR_ACTUAL_CANDY_MACHINE_ID_HERE'),
-  
-  // Mint price in SOL
-  MINT_PRICE: 0.2,
-  
-  // Network (should match your deployment)
-  NETWORK: 'devnet', // or 'mainnet-beta'
-  
-  // ... rest of config
-};
-```
-
-### 3. Network Configuration
-
-Ensure your network settings match across:
-- `src/App.tsx` (WalletAdapterNetwork)
-- `src/config/candyMachine.ts` (NETWORK setting)
-- Your deployed Candy Machine network
-
-### 4. Testing
-
-1. **Devnet Testing:**
-   - Get devnet SOL from [Solana Faucet](https://faucet.solana.com/)
-   - Test minting with devnet configuration
-   - Verify transactions on [Solscan Devnet](https://solscan.io/?cluster=devnet)
-
-2. **Mainnet Deployment:**
-   - Switch network to `mainnet-beta`
-   - Update Candy Machine ID to mainnet deployment
-   - Test with small amounts first
-
-### 5. Features Included
-
-✅ **Wallet Integration**
-- Automatic wallet connection prompt
-- Support for Phantom, Solflare, and other wallets
-
-✅ **Balance Checking**
-- Validates sufficient SOL balance (0.2 SOL + gas fees)
-- Clear error messages for insufficient funds
-
-✅ **Transaction Handling**
-- Loading states during minting
-- Transaction confirmation waiting
-- Success/error feedback
-
-✅ **Error Management**
-- Comprehensive error handling
-- User-friendly error messages
-- Retry functionality
-
-✅ **Mobile Responsive**
-- Works seamlessly on mobile and desktop
-- Touch-friendly interface
-
-### 6. Troubleshooting
-
-**Common Issues:**
-
-1. **"Candy Machine configuration is invalid"**
-   - Update `CANDY_MACHINE_ID` in config file
-   - Ensure the ID matches your deployed Candy Machine
-
-2. **"Insufficient SOL balance"**
-   - User needs at least 0.21 SOL (0.2 + gas fees)
-   - Direct them to buy SOL or use faucet for devnet
-
-3. **"Network error"**
-   - Check RPC endpoint connectivity
-   - Verify network configuration matches deployment
-
-4. **"Candy Machine is sold out"**
-   - Check if all NFTs have been minted
-   - Verify Candy Machine supply settings
-
-### 7. Production Checklist
-
-Before going live:
-
-- [ ] Deploy Candy Machine on mainnet
-- [ ] Update `CANDY_MACHINE_ID` with mainnet address
-- [ ] Set `NETWORK` to `'mainnet-beta'`
-- [ ] Test minting with real SOL
-- [ ] Verify NFT metadata and images
-- [ ] Test on multiple devices and wallets
-- [ ] Monitor transaction success rates
-
-### 8. Support
-
-For additional help:
-- [Metaplex Documentation](https://docs.metaplex.com/)
-- [Solana Cookbook](https://solanacookbook.com/)
-- [Sugar CLI Guide](https://docs.metaplex.com/developer-tools/sugar/)
+Players can **resell their Game Pass NFTs on secondary markets** (Magic Eden) anytime during the game.
 
 ---
 
-**Note:** The current implementation includes demo/placeholder functionality until you configure your actual Candy Machine ID.
+## 🌐 Live Links
+- **Website:** [sol-game.fun](https://sol-game.fun)
+- **Collection:** [Magic Eden](https://magiceden.io/marketplace/sol_game)
+- **Twitter:** [@solgamefun](https://x.com/solgamefun)
+
+---
+
+## 🕹️ Gameplay Overview
+
+✅ **Mint a Game Pass NFT (0.2 SOL)** to enter.  
+✅ Play **6 on-chain elimination rounds** over **6 weeks**.  
+✅ **Each round lasts 1 week**, so you can play **whenever you want** within that window (no need to be online at a specific hour).  
+✅ Survive all 6 rounds to **win the jackpot**.
+
+If you wish to exit, **you can resell your Game Pass NFT anytime on secondary markets such as Magic Eden** (each NFT has a Status attribute showing whether the player is Alive or Dead, and its image updates automatically to an “Eliminated” version when the player is out).
+
+---
+
+## 💡 Why SOL GAME?
+
+✅ **$10,000 prize pool** for the last survivor.  
+✅ Fully on-chain logic for fairness and transparency.  
+✅ Low barrier to entry (0.2 SOL mint price).  
+✅ **Tradeable Game Pass NFTs** with potential resale value.  
+✅ Flexible participation (1 week per round).  
+✅ Community-driven on Solana.
+
+---
+
+## 👨‍💻 Tech Stack
+
+- Solana blockchain
+- Candy Machine v3 (Metaplex)
+- React + Vite frontend
+- TypeScript
+- Phantom, Solflare, and Backpack wallet integrations
+
+---
+
+## ⚙️ Developer Setup
+
+bash
+git clone https://github.com/lenny00/solgame-frontend.git
+cd solgame-frontend
+npm install
+npm run dev
