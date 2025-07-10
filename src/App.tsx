@@ -18,14 +18,16 @@ import MintNFTButton from './components/MintNFTButton';
 // Import wallet adapter CSS
 import '@solana/wallet-adapter-react-ui/styles.css';
 
+import { CANDY_MACHINE_CONFIG } from './config/candyMachine'; // Ajustez le chemin
+
+
 function App() {
   const [isAudioEnabled, setIsAudioEnabled] = useState(true); // ✅ ON par défaut
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Solana network configuration - Using Devnet for Candy Machine
-  const network = WalletAdapterNetwork.Devnet;
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  // Solana network configuration - Using Mainnet for Candy Machine
+const endpoint = useMemo(() => CANDY_MACHINE_CONFIG.RPC_ENDPOINT, []);
 
   // Wallet adapters
   const wallets = useMemo(
